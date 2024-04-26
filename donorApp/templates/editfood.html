@@ -1,0 +1,134 @@
+{% extends 'donor.html' %} {%load static%} {% block content %}
+<section class="">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <a href="#!">
+                <img
+                  src="{% static 'img/logo.jpg' %}"
+                  alt="BootstrapBrain Logo"
+                  width="175"
+                  height="105"
+                  style="object-fit: cover"
+                />
+              </a>
+            </div>
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-2">
+              Edit your Product Details Here
+            </h2>
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row gy-2 overflow-hidden">
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="name"
+                      id="firstName"
+                      placeholder="First Name"
+                      value="{{ food.name }}"
+                      required
+                    />
+                    <label for="firstName" class="form-label">Food Name</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="date"
+                      class="form-control"
+                      name="expiry_date"
+                      id="expiryDate"
+                      value="{{ food.expiry_date|date:'Y-m-d' }}"
+                      required
+                    />
+                    <label for="expiryDate" class="form-label"
+                      >Expiry Date</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <textarea
+                      class="form-control"
+                      name="description"
+                      id="description"
+                      placeholder="Description"
+                      required
+                      style="height: 200px;"
+                    >
+{{ food.description }}</textarea
+                    >
+                    <label for="description" class="form-label"
+                      >Description</label
+                    >
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <textarea
+                      class="form-control"
+                      name="pickup_address"
+                      id="pickupAddress"
+                      placeholder="Pickup Address"
+                      required
+                      style="height: 200px;"
+                    >
+{{ food.pickup_address }}</textarea
+                    >
+                    <label for="pickupAddress" class="form-label"
+                      >Pickup Address</label
+                    >
+                  </div>
+                </div>
+                <div class="col-6">
+                  <label for="image" class="form-label">Current Image</label>
+                  <img
+                    src="{{ food.image.url }}"
+                    alt="Current Image"
+                    class="img-fluid"
+                  />
+                </div>
+                <div class="col-12">
+                  <div class="form-floating mb-3">
+                    <input
+                      type="file"
+                      class="form-control"
+                      name="image"
+                      id="image"
+                      accept="image/*"
+                    />
+                    <label for="image" class="form-label"
+                      >Upload New Image</label
+                    >
+                  </div>
+                </div>
+
+                <div class="col-2">
+                  <div class="d-grid my-2">
+                    <button class="btn btn-primary btn-md" type="submit">
+                      Save
+                    </button>
+                  </div>
+                </div>
+                <div class="col-2">
+                  <div class="d-grid my-2">
+                    <button class="btn btn-primary btn-md" type="reset">
+                      Reset Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

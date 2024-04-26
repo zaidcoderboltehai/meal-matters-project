@@ -1,0 +1,107 @@
+{% extends 'user.html' %}
+{% load static %}
+{% block content %}
+<section class="">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <a href="#!">
+                <img
+                  src="{% static 'img/logo.jpg' %}"
+                  alt="BootstrapBrain Logo"
+                  width="175"
+                  height="105"
+                  style="object-fit: cover"
+                />
+              </a>
+            </div>
+            <h2 class="fs-6 fw-normal text-center text-secondary mb-2">
+              Product Details
+            </h2>
+            <div class="row gy-2 overflow-hidden">
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="name"
+                    id="firstName"
+                    placeholder="First Name"
+                    value="{{ food.name }}"
+                    readonly
+                  />
+                  <label for="firstName" class="form-label">Food Name</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  <input
+                    type="date"
+                    class="form-control"
+                    name="expiry_date"
+                    id="expiryDate"
+                    value="{{ food.expiry_date|date:'Y-m-d' }}"
+                    readonly
+                  />
+                  <label for="expiryDate" class="form-label">Expiry Date</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  <textarea
+                    class="form-control"
+                    name="description"
+                    id="description"
+                    placeholder="Description"
+                    required
+                    style="height: 200px;"
+                    readonly
+                  >
+{{ food.description }}</textarea
+                  >
+                  <label for="description" class="form-label">Description</label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-floating mb-3">
+                  <textarea
+                    class="form-control"
+                    name="pickup_address"
+                    id="pickupAddress"
+                    placeholder="Pickup Address"
+                    required
+                    style="height: 200px;"
+                    readonly
+                  >
+{{ food.pickup_address }}</textarea
+                  >
+                  <label for="pickupAddress" class="form-label">Pickup Address</label>
+                </div>
+              </div>
+              <div class="col-6">
+                <label for="image" class="form-label">Current Image</label>
+                <img
+                  src="{{ food.image.url }}"
+                  alt="Current Image"
+                  class="img-fluid"
+                />
+              </div>
+              <div class="col-12">
+                <a href="/sendrequest/{{food.id}}" class="btn btn-primary btn-sm mt-2 " onclick="sendRequest()" role="button">Send request</a>
+                    <script>
+                        function sendRequest() {
+                            alert("Request has been sent successfully and waiting for approval");
+                        }
+                    </script>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
